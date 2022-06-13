@@ -1,0 +1,30 @@
+{
+  "name": "Dali",
+  "version": "1.0.0",
+  "description": "一款免费的性能监控SDK, 欢迎fork",
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "module": "dist/index.module.js",
+  "types": "dist/typings/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "example:run": "parcel  examples/index.html",
+    "api:init": "api-extractor init",
+    "api:run": "api-extractor run --local --verbose",
+    "api:doc": "typedoc --out docs src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@microsoft/api-extractor": "^7.12.1",
+    "microbundle": "^0.13.0",
+    "typedoc": "^0.20.9"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "web-vitals": "^1.1.0"
+  }
+}

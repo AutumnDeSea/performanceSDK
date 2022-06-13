@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declarationDir": "./typings"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
+}

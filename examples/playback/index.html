@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>错误捕获</title>
+    <link rel="stylesheet" href="./node_modules/rrweb/dist/rrweb-all.min.css" />
+    <link rel="stylesheet" href="./node_modules/rrweb-player/dist/style.css" />
+  </head>
+  <body>
+    <script src="./node_modules/rrweb/dist/rrweb-all.min.js"></script>
+    <script src="./node_modules/rrweb-player/dist/index.js"></script>
+    <input type="button" id="js-btn" value="测试数据" />
+    <input type="text" />
+    <h4>⏺用户操作回溯</h4>
+    <hr />
+    <div id="player"></div>
+    <script>
+      // const events = [];
+      const eventsMatrix = [[]];
+      rrweb.record({
+        emit(event, isCheckout) {
+          if (isCheckout) {
+            eventsMatrix.push([]);
+          }
+          //数据指针
+          const lastEvents = eventsMatrix[eventsMatrix.length - 1];
+          lastEvents.push(event);
+          // events.push(event);
+        },
+        recordLog: true,
+        checkoutEveryNth: 10,
+        packFn: rrweb.pack,
+      });
+      // 回放最后2步 但实际上传递的数据还是相对较多的
+      window.onerror = function () {
+        console.log('📚', eventsMatrix);
+        const len = eventsMatrix.length;
+        const events = eventsMatrix[len - 2].concat(eventsMatrix[len - 1]);
+        const body = JSON.stringify({ events });
+        console.log('🐻', events);
+        // const replayer = new rrweb.Replayer(events, {
+        //   unpackFn: rrweb.unpack,
+        // });
+        // replayer.play();
+        const replayer = new rrwebPlayer({
+          target: document.getElementById('player'), // customizable root element
+          props: {
+            events,
+            // unpackFn: rrweb.unpack, 默认解码
+          },
+        });
+        console.log('输出', replayer.on);
+        // replayer.on('play', (payload) => {
+        //   console.log('开始播放');
+        // });
+      };
+      document.getElementById('js-btn').addEventListener('click', function () {
+        // alert('京程一灯');
+        console.log(x);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" elementtiming="elPageTitle">Hello</div>
+    <input id="js-btn-error" type="button" value="测试错误" />
+    <input type="text" />
+    <img id='img-layout'src="./404.png">
+    <script src="./performance/index.ts"></script>
+    <img id="js-img" src="https://www.ygexing.com/upload/223/new/20210303/15690311636958128.jpg" />
+    <script>
+      document.getElementById('app').addEventListener('click', () => {
+        alert('测试');
+      });
+    </script>
+    <script src="./error/demo1.js"></script>
+    <script>
+      setTimeout(() => {
+        document.getElementById('img-layout').setAttribute('style', 'position: absolute; top: 140px')
+      }, 3000)
+    </script>
+  </body>
+</html>
